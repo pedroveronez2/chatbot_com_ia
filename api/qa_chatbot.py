@@ -16,11 +16,25 @@ class QAChatbot:
             return context_data.get('contexto', {})
 
     def get_answer(self, question: str) -> str:
-        if self._is_list_request(question):
+        if self._is_about_me_request(question):
+            return self.context.get('sobre_mim', '')
+        elif self._is_list_request(question):
             return self._generate_list_response(question)
         else:
             response = self.qa_pipeline(question=question, context=self._flatten_context())
             return response['answer']
+
+    def _is_about_me_request(self, question: str) -> bool:
+        about_me_patterns = [
+            r'\bfale um pouco sobre você\b',
+            r'\bfale um pouco sobre voce\b',
+            r'\bfale sobre você\b',
+            r'\bfale sobre voce\b',
+        ]
+        for pattern in about_me_patterns:
+            if re.search(pattern, question, flags=re.IGNORECASE):
+                return True
+        return False
 
     def _is_list_request(self, question: str) -> bool:
         list_patterns = [
@@ -36,9 +50,9 @@ class QAChatbot:
 
     def _generate_list_response(self, question: str) -> str:
         if 'soft skills' in question.lower():
-            return self.context.get('soft skills', '')
+            return self.context.get('Soft Skills', '')
         elif 'habilidades' in question.lower():
-            return self._format_skills_list(self.context.get('Habilidades Técnicas', []), include_description=False)
+            return self._format_skills_list(self.context.get('Habilidades', []), include_description=False)
         elif 'idiomas' in question.lower():
             return self._format_languages_list(self.context.get('Idiomas', []))
         elif 'hobbies' in question.lower():
@@ -62,19 +76,24 @@ class QAChatbot:
         formatted_list = ""
         for skill in skills_list:
             if isinstance(skill, dict):
-                nome = skill.get('nome', '')
+                habilidade = skill.get('habilidade', '')
                 descricao = skill.get('descricao', '')
                 if include_description:
-                    formatted_list += f"{nome}: {descricao}\n"
+                    formatted_list += f"{habilidade}: {descricao}\n"
                 else:
-                    formatted_list += f"{nome}\n"
+                    formatted_list += f"{habilidade}\n"
         return formatted_list.strip()
 
     def _format_languages_list(self, languages_list: list) -> str:
         formatted_list = ""
         for language in languages_list:
             if isinstance(language, dict):
-                nome = language.get('nome', '')
+                idioma = language.get('idioma', '')
                 nivel = language.get('nível', '')
-                formatted_list += f"{nome} ({nivel})\n"
+                formatted_list += f"{idioma} ({nivel})\n"
         return formatted_list.strip()
+
+# Exemplo de uso:
+# chatbot = QAChatbot(model_name='pierreguillou/bert-base-cased-squad-v1.1-portuguese', context_file='./api/dataset.json')
+# resposta = chatbot.get_answer("fale um pouco sobre você")
+# print(resposta)

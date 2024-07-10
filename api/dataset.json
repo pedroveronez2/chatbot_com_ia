@@ -1,6 +1,7 @@
 {
   "contexto": {
     "Nome": "Pedro Augusto de Carvalho Veronez",
+    "me_chamo": "Pedro Augusto de Carvalho Veronez",
     "idade": "20 anos",
     "Cidade": "São Paulo, Brasil",
     "Nacionalidade": "Brasileiro",
@@ -10,23 +11,24 @@
     "Curso": "Ciências da Computação",
     "Faculdade": "Faculdade Impacta",
     "Ano na Faculdade": "2º semestre",
+    "sobre_mim": "Oi, sou Pedro Augusto de Carvalho Veronez, 20 anos, estudante de Ciências da Computação na Faculdade Impacta. Tenho experiência com Python, IA e aprendizado de máquina. Falo português e inglês intermediário. Gosto de trabalhar em equipe, flexibilidade no trabalho, viajar a trabalho, video games, musculação e leitura. Não gosto de ambientes formais, trabalhar sem desafios, eventos barulhentos e ficar sem fazer nada. Aceito novas tecnologias, ideias inovadoras, viagens de lazer, eventos sociais e atividades ao ar livre. Não aceito micromanagement, ambientes tóxicos, falta de reconhecimento profissional e políticas pouco transparentes.",
     "Habilidades": [
       {
-        "nome": "Desenvolvimento de Software com Python",
+        "habilidade": "Desenvolvimento de Software com Python",
         "descricao": "Experiência em desenvolvimento de aplicações utilizando Python."
       },
       {
-        "nome": "Projetos de Inteligência Artificial (IA)",
+        "habilidade": "Projetos de Inteligência Artificial (IA)",
         "descricao": "Participação em projetos de IA envolvendo processamento de linguagem natural e visão computacional."
       },
       {
-        "nome": "Aprendizado de Máquina",
+        "habilidade": "Aprendizado de Máquina",
         "descricao": "Conhecimento em algoritmos de aprendizado supervisionado e não supervisionado."
       }
     ],
     "Idiomas": [
-      { "nome": "Português", "nível": "Nativo" },
-      { "nome": "Inglês", "nível": "Intermediário" }
+      { "idioma": "Português", "nível": "Nativo" },
+      { "idioma": "Inglês", "nível": "Intermediário" }
     ],
     "Hobbies": "Video game, estudar novas tecnologias, musculação, artes marciais e leitura",
     "Soft Skills": "Adaptabilidade, Resolução de Problemas, Pensamento Crítico, Gerenciamento de Tempo, Empatia, Liderança, Criatividade, Inteligência Emocional, Ética de Trabalho, Negociação, Atitude Positiva, Autogestão",
