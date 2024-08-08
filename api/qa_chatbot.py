@@ -40,7 +40,7 @@ class QAChatbot:
         list_patterns = [
             r'\bquais são\b',
             r'\bquais sao\b',
-            r'\blista das\b',
+            r'\blista d[a-zA-Z]\b',
             r'\benumerar\b',
         ]
         for pattern in list_patterns:
