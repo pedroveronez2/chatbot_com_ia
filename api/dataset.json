@@ -1,7 +1,6 @@
 {
   "contexto": {
     "Nome": "Pedro Augusto de Carvalho Veronez",
-    "me_chamo": "Pedro Augusto de Carvalho Veronez",
     "idade": "20 anos",
     "Cidade": "São Paulo, Brasil",
     "Nacionalidade": "Brasileiro",
@@ -10,8 +9,7 @@
     "Educação Acadêmica": "Ensino Superior (Cursando)",
     "Curso": "Ciências da Computação",
     "Faculdade": "Faculdade Impacta",
-    "Ano na Faculdade": "2º semestre",
-    "sobre_mim": "Oi, sou Pedro Augusto de Carvalho Veronez, 20 anos, estudante de Ciências da Computação na Faculdade Impacta. Tenho experiência com Python, IA e aprendizado de máquina. Falo português e inglês intermediário. Gosto de trabalhar em equipe, flexibilidade no trabalho, viajar a trabalho, video games, musculação e leitura. Não gosto de ambientes formais, trabalhar sem desafios, eventos barulhentos e ficar sem fazer nada. Aceito novas tecnologias, ideias inovadoras, viagens de lazer, eventos sociais e atividades ao ar livre. Não aceito micromanagement, ambientes tóxicos, falta de reconhecimento profissional e políticas pouco transparentes.",
+    "Ano na Faculdade": "1º semestre",
     "Habilidades": [
       {
         "habilidade": "Desenvolvimento de Software com Python",
@@ -32,36 +30,10 @@
     ],
     "Hobbies": "Video game, estudar novas tecnologias, musculação, artes marciais e leitura",
     "Soft Skills": "Adaptabilidade, Resolução de Problemas, Pensamento Crítico, Gerenciamento de Tempo, Empatia, Liderança, Criatividade, Inteligência Emocional, Ética de Trabalho, Negociação, Atitude Positiva, Autogestão",
-    "Preferencias": {
-      "Gosto": [
-        {"item": "Trabalhar em equipe", "razao": "Porque a colaboração gera resultados melhores.", "gsoto": "Sim, eu gosto"},
-        {"item": "Flexibilidade no trabalho", "razao": "Para equilibrar vida pessoal e profissional."},
-        {"item": "Viajar a trabalho", "razao": "Para conhecer novos lugares e culturas."},
-        {"item": "Video game", "razao": "Para relaxar e desenvolver habilidades estratégicas."},
-        {"item": "Musculação", "razao": "Para manter a saúde física e mental."},
-        {"item": "Leitura", "razao": "Para expandir conhecimentos e criatividade."}
-      ],
-      "NaoGosto": [
-        {"item": "Ambientes muito formais", "razao": "Prefiro um ambiente mais descontraído e colaborativo."},
-        {"item": "Trabalhar sem desafios", "razao": "Gosto de estar sempre aprendendo e evoluindo."},
-        {"item": "Eventos muito barulhentos", "razao": "Prefiro ambientes tranquilos para concentração."},
-        {"item": "Ficar sem fazer nada", "razao": "Gosto de estar sempre produtivo ou relaxando ativamente."}
-      ],
-      "Aceita": [
-        {"item": "Novas tecnologias", "razao": "Para estar sempre atualizado com o que há de mais novo no mercado."},
-        {"item": "Ideias inovadoras", "razao": "Porque a inovação é essencial para o progresso."},
-        {"item": "Viagens de lazer", "razao": "Para explorar novos lugares e culturas durante o tempo livre."},
-        {"item": "Eventos sociais", "razao": "Para networking e conhecer novas pessoas."},
-        {"item": "Atividades ao ar livre", "razao": "Para aproveitar a natureza e relaxar fora do ambiente urbano."}
-      ],
-      "NaoAceita": [
-        {"item": "Micromanagement", "razao": "Prefiro ter autonomia para realizar minhas tarefas."},
-        {"item": "Ambiente de trabalho tóxico", "razao": "Valorizo um ambiente positivo e colaborativo."},
-        {"item": "Falta de reconhecimento profissional", "razao": "Valorizo o reconhecimento pelo meu trabalho e contribuições."},
-        {"item": "Política de empresa pouco transparente", "razao": "Prefiro trabalhar em um ambiente com comunicação aberta e honesta."}
-      ]
+    "perguntas_binarias": {
+      "Você possui filhos?": "Não",
+      "Você está em um relacionamento?": "Não",
+      "Você fala inglês fluente?": "Sim"
     }
-    
   }
-  
 }

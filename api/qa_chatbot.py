@@ -1,6 +1,5 @@
 import json
 from transformers import pipeline, AutoModelForQuestionAnswering, AutoTokenizer
-import re
 
 class QAChatbot:
     def __init__(self, model_name: str, context_file: str):
@@ -10,55 +9,13 @@ class QAChatbot:
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.qa_pipeline = pipeline("question-answering", model=self.model, tokenizer=self.tokenizer)
 
+        # Extraindo perguntas binárias do contexto
+        self.binary_questions = self.context.get('perguntas_binarias', {})
+
     def _load_context(self, context_file: str):
         with open(context_file, 'r', encoding='utf-8') as f:
             context_data = json.load(f)
             return context_data.get('contexto', {})
-
-    def get_answer(self, question: str) -> str:
-        if self._is_about_me_request(question):
-            return self.context.get('sobre_mim', '')
-        elif self._is_list_request(question):
-            return self._generate_list_response(question)
-        else:
-            response = self.qa_pipeline(question=question, context=self._flatten_context())
-            return response['answer']
-
-    def _is_about_me_request(self, question: str) -> bool:
-        about_me_patterns = [
-            r'\bfale um pouco sobre você\b',
-            r'\bfale um pouco sobre voce\b',
-            r'\bfale sobre você\b',
-            r'\bfale sobre voce\b',
-        ]
-        for pattern in about_me_patterns:
-            if re.search(pattern, question, flags=re.IGNORECASE):
-                return True
-        return False
-
-    def _is_list_request(self, question: str) -> bool:
-        list_patterns = [
-            r'\bquais são\b',
-            r'\bquais sao\b',
-            r'\blista d[a-zA-Z]\b',
-            r'\benumerar\b',
-        ]
-        for pattern in list_patterns:
-            if re.search(pattern, question, flags=re.IGNORECASE):
-                return True
-        return False
-
-    def _generate_list_response(self, question: str) -> str:
-        if 'soft skills' in question.lower():
-            return self.context.get('Soft Skills', '')
-        elif 'habilidades' in question.lower():
-            return self._format_skills_list(self.context.get('Habilidades', []), include_description=False)
-        elif 'idiomas' in question.lower():
-            return self._format_languages_list(self.context.get('Idiomas', []))
-        elif 'hobbies' in question.lower():
-            return self.context.get('Hobbies', '')
-        else:
-            return "Desculpe, não entendi a pergunta ou não tenho informações sobre isso."
 
     def _flatten_context(self) -> str:
         flattened_context = ""
@@ -72,28 +29,38 @@ class QAChatbot:
                 flattened_context += f"{key}: {value}\n"
         return flattened_context.strip()
 
-    def _format_skills_list(self, skills_list: list, include_description=True) -> str:
-        formatted_list = ""
-        for skill in skills_list:
-            if isinstance(skill, dict):
-                habilidade = skill.get('habilidade', '')
-                descricao = skill.get('descricao', '')
-                if include_description:
-                    formatted_list += f"{habilidade}: {descricao}\n"
-                else:
-                    formatted_list += f"{habilidade}\n"
-        return formatted_list.strip()
+    def _check_yes_no_question(self, question: str) -> str:
+        # Verifica se a pergunta é uma das perguntas binárias definidas
+        question_normalized = question.strip().lower()  # Normalize a pergunta para facilitar a comparação
+        
+        for binary_question, response in self.binary_questions.items():
+            if binary_question.lower() in question_normalized:
+                return response
+        
+        return None  # Se não for uma pergunta binária
 
-    def _format_languages_list(self, languages_list: list) -> str:
-        formatted_list = ""
-        for language in languages_list:
-            if isinstance(language, dict):
-                idioma = language.get('idioma', '')
-                nivel = language.get('nível', '')
-                formatted_list += f"{idioma} ({nivel})\n"
-        return formatted_list.strip()
+    def get_answer(self, question: str) -> str:
+        yes_no_response = self._check_yes_no_question(question)
+        if yes_no_response is not None:
+            return yes_no_response
 
-# Exemplo de uso:
-# chatbot = QAChatbot(model_name='pierreguillou/bert-base-cased-squad-v1.1-portuguese', context_file='./api/dataset.json')
-# resposta = chatbot.get_answer("fale um pouco sobre você")
-# print(resposta)
+        # Para perguntas normais
+        response = self.qa_pipeline(question=question, context=self._flatten_context())
+        return response['answer']
+
+if __name__ == '__main__':
+    # Código para testar a classe QAChatbot diretamente
+    model_name = "pierreguillou/bert-base-cased-squad-v1.1-portuguese"
+    context_file = "./api/dataset.json"  # Nome do arquivo JSON com o contexto
+    chatbot = QAChatbot(model_name, context_file)
+
+    # Testando algumas perguntas
+    perguntas = [
+        "Você tem filhos?",
+        "Você consegue falar em inglês fluentemente?",
+        "Qual é o seu nome?"
+    ]
+
+    for pergunta in perguntas:
+        resposta = chatbot.get_answer(pergunta)
+        print(f"Pergunta: {pergunta}\nResposta: {resposta}\n")
