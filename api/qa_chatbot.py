@@ -9,44 +9,19 @@ class QAChatbot:
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.qa_pipeline = pipeline("question-answering", model=self.model, tokenizer=self.tokenizer)
 
-        # Extraindo perguntas binárias do contexto
-        self.binary_questions = self.context.get('perguntas_binarias', {})
 
     def _load_context(self, context_file: str):
         with open(context_file, 'r', encoding='utf-8') as f:
             context_data = json.load(f)
             return context_data.get('contexto', {})
 
-    def _flatten_context(self) -> str:
-        flattened_context = ""
-        for key, value in self.context.items():
-            if isinstance(value, list):
-                for item in value:
-                    if isinstance(item, dict):
-                        for subkey, subvalue in item.items():
-                            flattened_context += f"{subkey}: {subvalue}\n"
-            else:
-                flattened_context += f"{key}: {value}\n"
-        return flattened_context.strip()
 
-    def _check_yes_no_question(self, question: str) -> str:
-        # Verifica se a pergunta é uma das perguntas binárias definidas
-        question_normalized = question.strip().lower()  # Normalize a pergunta para facilitar a comparação
-        
-        for binary_question, response in self.binary_questions.items():
-            if binary_question.lower() in question_normalized:
-                return response
-        
-        return None  # Se não for uma pergunta binária
 
     def get_answer(self, question: str) -> str:
-        yes_no_response = self._check_yes_no_question(question)
-        if yes_no_response is not None:
-            return yes_no_response
-
-        # Para perguntas normais
-        response = self.qa_pipeline(question=question, context=self._flatten_context())
+        # Caso não seja uma pergunta binária, utilize o pipeline de QA para responder
+        response = self.qa_pipeline(question=question, context=self.context)
         return response['answer']
+
 
 if __name__ == '__main__':
     # Código para testar a classe QAChatbot diretamente
@@ -56,10 +31,29 @@ if __name__ == '__main__':
 
     # Testando algumas perguntas
     perguntas = [
-        "Você tem filhos?",
-        "Você consegue falar em inglês fluentemente?",
-        "Qual é o seu nome?"
-    ]
+    "Qual é o seu nome?",
+    "Quantos anos você tem?",
+    "Onde você mora?",
+    "Qual é a sua nacionalidade?",
+    "Qual é o seu estado civil?",
+    "Qual é o seu nível de educação?",
+    "Qual curso você está estudando?",
+    "Em qual faculdade você estuda?",
+    "Em que semestre você está?",
+    "Qual é a sua experiência profissional?",
+    "Quais linguagens de programação você conhece?",
+    "Quais frameworks você utiliza?",
+    "Quais bancos de dados você já trabalhou?",
+    "Quais ferramentas você usa no seu dia a dia?",
+    "Quais são as suas soft skills?",
+    "Quais idiomas você fala?",
+    "Quais são os seus interesses?",
+    "Quais hobbies você tem?",
+    "Você pode falar sobre um projeto pessoal que desenvolveu?",
+    "Você participou de algum evento relacionado à sua área?",
+    "O que você gosta de fazer no seu tempo livre?"
+        
+]
 
     for pergunta in perguntas:
         resposta = chatbot.get_answer(pergunta)
