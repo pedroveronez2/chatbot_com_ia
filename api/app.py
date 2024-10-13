@@ -7,7 +7,7 @@ CORS(app)
 
 # Exemplo de utilização
 model_name = "pierreguillou/bert-base-cased-squad-v1.1-portuguese"
-context_file = "./api/dataset.json"  # Nome do arquivo JSON com o contexto
+context_file = "./data/context.json"  # Nome do arquivo JSON com o contexto
 chatbot = QAChatbot(model_name, context_file)
 
 @app.route('/chat', methods=['POST'])

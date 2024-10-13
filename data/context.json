@@ -1,0 +1,50 @@
+{
+    "context1": {
+        "nome": "Pedro Augusto de Carvalho Veronez",
+        "idade": 20,
+        "formacao": {
+        "curso": "Ciências da Computação",
+        "instituicao": "Faculdade Impacta"
+        },
+        "foco_profissional": [
+        "Ciência de Dados",
+        "Machine Learning"
+        ],
+        "experiencia": {
+        "tipo": "prática",
+        "descricao": "Acumulei valiosa experiência prática através de projetos pessoais e cursos especializados.",
+        "competencias": [
+            "análise de dados",
+            "algoritmos de aprendizado de máquina"
+        ]
+        },
+        "experiencia_profissional": {
+        "cargo": "freelancer",
+        "servicos": [
+            "desenvolvimento web",
+            "automação",
+            "análise de dados"
+        ],
+        "impacto": "Contribui para o crescimento e otimização de processos em diferentes negócios."
+        },
+        "aprendizado_continuo": {
+        "metodos": [
+            "iniciativas práticas",
+            "aplicação de teorias a problemas reais"
+        ]
+        },
+        "soft_skills": [
+        "comunicação eficaz",
+        "trabalho em equipe",
+        "solução de problemas",
+        "adaptabilidade",
+        "curiosidade"
+        ],
+        "motivacao": "Dedicação e curiosidade impulsionam minha evolução no setor.",
+        "conquistas": "Já alcancei conquistas significativas em meus projetos.",
+        "perspectivas_futuras": "Estou ansioso para aplicar minhas habilidades em ambientes profissionais e contribuir para projetos de impacto."
+    },
+        
+        
+    "context2": "Me chamo Pedro Augusto de Carvalho Veronez, tenho 20 anos de idade, moro no Brasil no estado de São Paulo na Zona Norte e atualmente estou cursando Ciências da Computação na Faculdade Impacta. Embora eu esteja nos estágios iniciais da minha carreira, tenho direcionado meu foco para as áreas de Ciência de Dados e Machine Learning, nas quais já acumulei uma valiosa experiência prática. Através de projetos pessoais e diversos cursos especializados, desenvolvi competências sólidas em análise de dados e algoritmos de aprendizado de máquina. Profissionalmente, trabalho como freelancer prestando serviços de desenvolvimento web, automação e análise de dados para diversas empresas. Essa experiência tem me permitido aplicar meu conhecimento técnico em projetos reais, contribuindo para o crescimento e otimização de processos em diferentes negócios. Além disso, estou constantemente expandindo meus conhecimentos por meio de iniciativas práticas que me permitem aplicar teorias a problemas reais. Minhas soft skills, como comunicação eficaz, trabalho em equipe, solução de problemas, adaptabilidade e curiosidade, têm sido fundamentais para meu desenvolvimento profissional. Minha dedicação e curiosidade têm sido os motores que impulsionam minha evolução no setor, me permitindo adquirir uma compreensão profunda das ferramentas e técnicas mais modernas. Embora eu ainda esteja construindo minha trajetória profissional, já alcancei conquistas significativas em meus projetos e continuo a me desafiar para crescer na área de tecnologia. Estou ansioso para aplicar minhas habilidades em ambientes profissionais e contribuir para projetos de impacto."
+}
